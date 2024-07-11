@@ -8,20 +8,18 @@ use App\Models\jenis_kendaraan;
 
 class armadaController extends Controller
 {
-    public function index(){
-    $armada=armada::all();
+    public function index()
+    {
+        $armada = Armada::all();
         return view('dashboard.armada.index', compact('armada'));
     }
 
-        public function create()
-        {
-            $jenis_kendaraan = jenis_kendaraan::all(); // Fetch all jenis_kendaraan data
-            return view('dashboard.armada.create', compact('jenis_kendaraan'));
-        }
+    public function create()
+    {
+        $jenis_kendaraan = jenis_kendaraan::all();
+        return view('dashboard.armada.create', compact('jenis_kendaraan'));
+    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -32,43 +30,20 @@ class armadaController extends Controller
             'jenis_kendaraan_id' => 'required',
             'kapasitas_kursi' => 'required',
             'rating' => 'required',
-
         ]);
 
-        $data = [
-            'merk' => $request->input('merk'),
-            'nopol' => $request->input('nopol'),
-            'thn_beli' => $request->input('thn_beli'),
-            'deskripsi' => $request->input('deskripsi'),
-            'jenis_kendaraan_id' => $request->input('jenis_kendaraan_id'),
-            'kapasitas_kursi' => $request->input('kapasitas_kursi'),
-            'rating' => $request->input('rating'),
-        ];
-        armada::create($data);
-        return redirect()->route('armada.create')->with('success', 'berhasil simpan data');
+        $armada = Armada::create($request->all());
 
+        return redirect()->route('armada.create')->with('success', 'Berhasil simpan data');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
-        $armada = armada::findOrFail($id);
-        return view('dashboard.armada.edit', compact('armada'));
+        $armada = Armada::findOrFail($id);
+        $jenis_kendaraan = jenis_kendaraan::all();
+        return view('dashboard.armada.edit', compact('armada', 'jenis_kendaraan'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -81,27 +56,17 @@ class armadaController extends Controller
             'rating' => 'required',
         ]);
 
-        $data = [
-            'merk' => $request->input('merk'),
-            'nopol' => $request->input('nopol'),
-            'thn_beli' => $request->input('thn_beli'),
-            'deskripsi' => $request->input('deskripsi'),
-            'jenis_kendaraan_id' => $request->input('jenis_kendaraan_id'),
-            'kapasitas_kursi' => $request->input('kapasitas_kursi'),
-            'rating' => $request->input('rating'),
-        ];
+        $armada = Armada::findOrFail($id);
+        $armada->update($request->all());
 
-        $armada = armada::findOrFail($id);
-        $armada->update($data);
-        return redirect()->route('armada.edit', $armada->id)->with('success', 'Berhasil mengubah data!');
+        return redirect()->route('armada.edit', $armada->id)->with('success', 'Berhasil mengubah data');
     }
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+
+    public function destroy($id)
     {
-        $armada = armada::findOrFail($id);
+        $armada = Armada::findOrFail($id);
         $armada->delete();
-        return redirect('/dashboard/armada')->with('success', 'Berhasil menghapus data!');
+
+        return redirect('/dashboard/armada')->with('success', 'Berhasil menghapus data');
     }
 }

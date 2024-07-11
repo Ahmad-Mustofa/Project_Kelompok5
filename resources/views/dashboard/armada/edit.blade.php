@@ -45,21 +45,42 @@
                                     </ul>
                                 </div>
                                 @endif
-                                <form action="{{ route('armada.store') }}" method="post">
+                                <form action="{{ route('armada.update', $armada->id) }}" method="post">
                                     @csrf
+                                    @method('PUT')
                                     <div class="form-group row">
-                                        <label for="name" class="col-md-4">Nama</label>
+                                        <label for="merk" class="col-md-4">Nama</label>
                                         <input type="hidden" name="id" value="{{ $armada->id }}">
-                                        <input type="text" value="{{ $armada->name }}" name="name" id="name" class="form-control col-md-8" required>
+                                        <input type="text" value="{{ $armada->merk }}" name="merk" id="merk" class="form-control col-md-8" required>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="Email" class="col-md-4">Email</label>
-                                        <input type="hidden" name="id" value="{{ $armada->id }}">
-                                        <input type="text" value="{{ $armada->email }}" name="email" id="email" class="form-control col-md-8" required>
+                                        <label for="nopol" class="col-md-4">nopol</label>
+                                        <input type="text" value="{{ $armada->nopol }}" name="nopol" id="nopol" class="form-control col-md-8" required>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="password" class="col-md-4">Password</label>
-                                        <input type="text" value="{{ $armada->password }}" name="password" id="password" class="form-control col-md-8" required>
+                                        <label for="thn_beli" class="col-md-4">Tahun</label>
+                                        <input type="text" value="{{ $armada->thn_beli }}" name="thn_beli" id="thn_beli" class="form-control col-md-8" required>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="deskripsi" class="col-md-4">Deskripsi</label>
+                                        <input type="text" value="{{ $armada->deskripsi }}" name="deskripsi" id="deskripsi" class="form-control col-md-8" required>
+                                    </div>
+                                    <div class="form-group row">
+                                            <label for="text" class="col-md-4">Jenis Kendaraan</label>
+                                            <select name="jenis_kendaraan_id" id="jenis_kendaraan_id" class="form-control col-md-8">
+                                                <option value="" hidden>Pilih Jenis</option>
+                                                @foreach ($jenis_kendaraan as $jenis)
+                                                    <option value="{{ $jenis->id }}">{{ $jenis->name }}</option> <!-- Add the display value here -->
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    <div class="form-group row">
+                                        <label for="kapasitas_kursi" class="col-md-4">Kapasitas</label>
+                                        <input type="text" value="{{ $armada->kapasitas_kursi }}" name="kapasitas_kursi" id="kapasitas_kursi" class="form-control col-md-8" required>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="rating" class="col-md-4">Kapasitas</label>
+                                        <input type="text" value="{{ $armada->rating }}" name="rating" id="rating" class="form-control col-md-8" required>
                                     </div>
                                     <div class="d-flex justify-content-center">
                                         <input type="submit" value="Edit" class="btn btn-primary">
