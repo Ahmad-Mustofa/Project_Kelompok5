@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\armada;
+use App\Models\jenis_kendaraan;
+
 class armadaController extends Controller
 {
     public function index(){
@@ -13,7 +15,8 @@ class armadaController extends Controller
 
         public function create()
         {
-            return view('dashboard.armada.create');
+            $jenis_kendaraan = jenis_kendaraan::all(); // Fetch all jenis_kendaraan data
+            return view('dashboard.armada.create', compact('jenis_kendaraan'));
         }
 
     /**
@@ -30,11 +33,6 @@ class armadaController extends Controller
             'kapasitas_kursi' => 'required',
             'rating' => 'required',
 
-        ],
-        [
-            'name.required' => 'name merk Wajib Diisi',
-            'name.min' => 'name merk Minimal 3 Karakter',
-            'name.max' => 'name Jabtan Maximal 50 Karakter',
         ]);
 
         $data = [
@@ -81,12 +79,6 @@ class armadaController extends Controller
             'jenis_kendaraan_id' => 'required',
             'kapasitas_kursi' => 'required',
             'rating' => 'required',
-        ],
-        [
-            'name.required' => 'name merk Wajib Diisi',
-            'name.min' => 'name Minimal 3 Karakter',
-            'name.max' => 'name Jabtan Maximal 50 Karakter',
-        
         ]);
 
         $data = [

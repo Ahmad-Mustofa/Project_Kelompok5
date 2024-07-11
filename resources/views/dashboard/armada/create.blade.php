@@ -64,9 +64,14 @@
                                         <input type="text" name="deskripsi" value="{{ old('deskripsi') }}" id="deskripsi" class="form-control col-md-8">
                                     </div>
                                     <div class="form-group row">
-                                        <label for="jenis_kendaraan" class="col-md-4">Jenis Kendaraan</label>
-                                        <input type="text" name="jenis_kendaraan" value="{{ old('jenis_kendaraan') }}" id="jenis_kendaraan" class="form-control col-md-8">
-                                    </div>
+                                            <label for="text" class="col-md-4">Jenis Kendaraan</label>
+                                            <select name="jenis_kendaraan_id" id="jenis_kendaraan_id" class="form-control col-md-8">
+                                                <option value="" hidden>Pilih Jenis</option>
+                                                @foreach ($jenis_kendaraan as $jenis)
+                                                    <option value="{{ $jenis->id }}">{{ $jenis->name }}</option> <!-- Add the display value here -->
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     <div class="form-group row">
                                         <label for="kapasitas_kursi" class="col-md-4">Kapasitas Kursi</label>
                                         <input type="text" name="kapasitas_kursi" value="{{ old('kapasitas_kursi') }}" id="kapasitas_kursi" class="form-control col-md-8">

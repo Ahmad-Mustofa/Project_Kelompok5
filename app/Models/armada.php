@@ -10,7 +10,6 @@ class armada extends Model
     use HasFactory;
     protected $table='armada';
     protected $fillable = [
-        'id',
         'merk',
         'nopol',
         'thn_beli',

@@ -52,12 +52,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($armada as $armada)
+                                        @foreach ($armada as $ar)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $jenis->name }}</td>
-                                                <td class="d-flex"><a type="button" href="{{ route('armada.edit', $jenis->id) }}" class="btn btn-primary mr-4">Edit</a>
-                                                    <form action="{{ route('armada.delete', $jenis->id) }}" method="post" onsubmit="return confirm('yakin ingin dihapus?')">
+                                                <td>{{ $ar->merk }}</td>
+                                                <td>{{ $ar->nopol }}</td>
+                                                <td>{{ $ar->thn_beli }}</td>
+                                                <td>{{ $ar->deskripsi }}</td>
+                                                <td>{{ $ar->jenis_kendaraan_id }}</td>
+                                                <td>{{ $ar->kapasitas_kursi }}</td>
+                                                <td>{{ $ar->rating }}</td>
+                                                <td class="d-flex"><a type="button" href="{{ route('armada.edit', $ar->id) }}" class="btn btn-primary mr-4">Edit</a>
+                                                    <form action="{{ route('armada.delete', $ar->id) }}" method="post" onsubmit="return confirm('yakin ingin dihapus?')">
                                                        @csrf
                                                        @method('delete')
                                                        <button type="submit" class="btn btn-danger">Delete</button>
