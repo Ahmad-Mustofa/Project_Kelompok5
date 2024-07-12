@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\pembayaran;
 use Illuminate\Http\Request;
-
+use App\Models\peminjaman;
 class pembayaranController extends Controller
 {
     public function index(){
@@ -12,7 +12,8 @@ class pembayaranController extends Controller
         }
         public function create()
         {
-            return view('dashboard.pembayaran.create');
+            $peminjaman=peminjaman::all();
+            return view('dashboard.pembayaran.create', compact('peminjaman'));
         }
 
     /**
@@ -21,9 +22,9 @@ class pembayaranController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
             'tanggal' => 'required',
             'jumlah_bayar' => 'required',
+            'peminjaman_id' => 'required',
 
         ],
         [
@@ -33,9 +34,9 @@ class pembayaranController extends Controller
         ]);
 
         $data = [
-            'name' => $request->input('name'),
             'tanggal' => $request->input('tanggal'),
             'jumlah_bayar' => $request->input('jumlah_bayar'),
+            'peminjaman_id' => $request->input('peminjaman_id'),
         ];
 
         pembayaran::create($data);
@@ -57,7 +58,8 @@ class pembayaranController extends Controller
     public function edit($id)
     {
         $pembayaran = pembayaran::findOrFail($id);
-        return view('dashboard.pembayaran.edit', compact('pembayaran'));
+        $peminjaman=peminjaman::all();
+        return view('dashboard.pembayaran.edit', compact('peminjaman'));
     }
 
     /**
@@ -66,9 +68,10 @@ class pembayaranController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
             'tanggal' => 'required',
             'jumlah_bayar' => 'required',
+            'peminjaman_id' => 'required',
+
 
         ],
         [
@@ -78,9 +81,9 @@ class pembayaranController extends Controller
         ]);
 
         $data = [
-            'name' => $request->input('name'),
             'tanggal' => $request->input('tanggal'),
             'jumlah_bayar' => $request->input('jumlah_bayar'),
+            'peminjaman_id' => $request->input('peminjaman_id'),
         ];
 
         $pembayaran = pembayaran::findOrFail($id);

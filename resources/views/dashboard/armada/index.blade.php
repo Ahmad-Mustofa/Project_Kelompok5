@@ -55,9 +55,15 @@
                                         @foreach ($armada as $armada)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $jenis->name }}</td>
-                                                <td class="d-flex"><a type="button" href="{{ route('armada.edit', $jenis->id) }}" class="btn btn-primary mr-4">Edit</a>
-                                                    <form action="{{ route('armada.delete', $jenis->id) }}" method="post" onsubmit="return confirm('yakin ingin dihapus?')">
+                                                <td>{{ $armada->merk }}</td>
+                                                <td>{{ $armada->nopol }}</td>
+                                                <td>{{ $armada->thn_beli }}</td>
+                                                <td>{{ $armada->deskripsi }}</td>
+                                                <td>{{ $armada->jenis_kendaraan_id }}</td>
+                                                <td>{{ $armada->kapasitas_kursi }}</td>
+                                                <td>{{ $armada->rating }}</td>
+                                                <td class="d-flex"><a type="button" href="{{ route('armada.edit', $armada->id) }}" class="btn btn-primary mr-4">Edit</a>
+                                                    <form action="{{ route('armada.delete', $armada->id) }}" method="post" onsubmit="return confirm('yakin ingin dihapus?')">
                                                        @csrf
                                                        @method('delete')
                                                        <button type="submit" class="btn btn-danger">Delete</button>

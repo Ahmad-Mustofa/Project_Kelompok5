@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 use App\Models\peminjaman;
 use Illuminate\Http\Request;
-
+use App\Models\armada;
 class peminjamanController extends Controller
 {
     public function index(){
-        $peminjaman=peminjaman::all();
+       $peminjaman=peminjaman::all();
             return view('dashboard.peminjaman.index', compact('peminjaman'));
         }
         public function create()
         {
-            return view('dashboard.peminjaman.create');
+            $armada=armada::all();
+            return view('dashboard.peminjaman.create', compact('armada'));
         }
 
     /**
@@ -21,7 +22,7 @@ class peminjamanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name_peminjam' => 'required',
+            'nama_peminjam' => 'required',
             'ktp_peminjam' => 'required',
             'keperluan_pinjam' => 'required',
             'mulai' => 'required',
@@ -40,11 +41,12 @@ class peminjamanController extends Controller
         ]);
 
         $data = [
-            'name_peminjam' => $request->input('name_peminjam'),
+            'nama_peminjam' => $request->input('nama_peminjam'),
             'ktp_peminjam' => $request->input('ktp_peminjam'),
             'keperluan_pinjam' => $request->input('keperluan_pinjam'),
             'mulai' => $request->input('mulai'),
             'selesai' => $request->input('selesai'),
+            'biaya' => $request->input('biaya'),
             'armada_id' => $request->input('armada_id'),
             'komentar_peminjam' => $request->input('komentar_peminjam'),
             'status_pinjam' => $request->input('status_pinjam'),
@@ -70,8 +72,9 @@ class peminjamanController extends Controller
      */
     public function edit($id)
     {
-        $request = peminjaman::findOrFail($id);
-        return view('dashboard.peminjaman.edit', compact('peminjaman'));
+       $peminjaman = peminjaman::findOrFail($id);
+        $armada=armada::all();
+        return view('dashboard.peminjaman.edit', compact('armada'));
     }
 
     /**
@@ -80,7 +83,7 @@ class peminjamanController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name_peminjam' => 'required',
+            'nama_peminjam' => 'required',
             'ktp_peminjam' => 'required',
             'keperluan_pinjam' => 'required',
             'mulai' => 'required',
@@ -99,11 +102,12 @@ class peminjamanController extends Controller
         ]);
 
         $data = [
-            'name_peminjam' => $request->input('name_peminjam'),
+          'nama_peminjam' => $request->input('nama_peminjam'),
             'ktp_peminjam' => $request->input('ktp_peminjam'),
             'keperluan_pinjam' => $request->input('keperluan_pinjam'),
             'mulai' => $request->input('mulai'),
             'selesai' => $request->input('selesai'),
+            'biaya' => $request->input('biaya'),
             'armada_id' => $request->input('armada_id'),
             'komentar_peminjam' => $request->input('komentar_peminjam'),
             'status_pinjam' => $request->input('status_pinjam'),
@@ -111,17 +115,17 @@ class peminjamanController extends Controller
 
         ];
 
-        $request = peminjaman::findOrFail($id);
-        $request->update($data);
-        return redirect()->route('peminjaman.edit', $request->id)->with('success', 'Berhasil mengubah data!');
+       $peminjaman = peminjaman::findOrFail($id);
+       $peminjaman->update($data);
+        return redirect()->route('peminjaman.edit',$peminjaman->id)->with('success', 'Berhasil mengubah data!');
     }
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        $request = peminjaman::findOrFail($id);
-        $request->delete();
+      $peminjaman = peminjaman::findOrFail($id);
+      $peminjaman->delete();
         return redirect('/dashboard/peminjaman')->with('success', 'Berhasil menghapus data!');
     }
 }

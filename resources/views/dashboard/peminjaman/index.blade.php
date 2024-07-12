@@ -47,6 +47,7 @@
                                             <th>Mulai</th>
                                             <th>Selesai</th>
                                             <th>Biaya</th>
+                                            <th>Armada</th>
                                             <th>Komentar Peminjam</th>
                                             <th>Status Pinjam</th>
                                             <th>Aksi</th>
@@ -56,9 +57,17 @@
                                         @foreach ($peminjaman as $peminjaman)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $jenis->name }}</td>
-                                                <td class="d-flex"><a type="button" href="{{ route('peminjaman.edit', $jenis->id) }}" class="btn btn-primary mr-4">Edit</a>
-                                                    <form action="{{ route('peminjaman.delete', $jenis->id) }}" method="post" onsubmit="return confirm('yakin ingin dihapus?')">
+                                                <td>{{ $peminjaman->nama_peminjam }}</td>
+                                                <td>{{ $peminjaman->ktp_peminjam }}</td>
+                                                <td>{{ $peminjaman->keperluan_pinjam }}</td>
+                                                <td>{{ $peminjaman->mulai }}</td>
+                                                <td>{{ $peminjaman->selesai }}</td>
+                                                <td>{{ $peminjaman->biaya }}</td>
+                                                <td>{{ $peminjaman->armada_id }}</td>
+                                                <td>{{ $peminjaman->komentar_peminjam }}</td>
+                                                <td>{{ $peminjaman->status_pinjam }}</td>
+                                                <td class="d-flex"><a type="button" href="{{ route('peminjaman.edit', $peminjaman->id) }}" class="btn btn-primary mr-4">Edit</a>
+                                                    <form action="{{ route('peminjaman.delete', $peminjaman->id) }}" method="post" onsubmit="return confirm('yakin ingin dihapus?')">
                                                        @csrf
                                                        @method('delete')
                                                        <button type="submit" class="btn btn-danger">Delete</button>

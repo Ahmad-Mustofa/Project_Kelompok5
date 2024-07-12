@@ -48,23 +48,27 @@
                                 <form action="{{ route('pembayaran.store') }}" method="post">
                                     @csrf
                                     <div class="form-group row">
-                                        <label for="name" class="col-md-4">Nama</label>
-                                        <input type="hidden" name="id" value="{{ $pembayaran->id }}">
-                                        <input type="text" value="{{ $pembayaran->name }}" name="name" id="name" class="form-control col-md-8" required>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="tanggal" class="col-md-4">tanggal</label>
-                                        <input type="hidden" tanggal="id" value="{{ $pembayaran->id }}">
-                                        <input type="text" value="{{ $pembayaran->tanggal }}" tanggal="tanggal" id="tanggal" class="form-control col-md-8" required>
+                                        <label for="tanggal" class="col-md-4">Tanggal</label>
+                                        <input type="date" name="tanggal" value="{{ old('tanggal') }}" id="tanggal" class="form-control col-md-8">
                                     </div>
                                     <div class="form-group row">
                                         <label for="jumlah_bayar" class="col-md-4">Jumlah Bayar</label>
-                                        <input type="hidden" jumlah_bayar="id" value="{{ $pembayaran->id }}">
-                                        <input type="text" value="{{ $pembayaran->jumlah_bayar }}" jumlah_bayar="jumlah_bayar" id="jumlah_bayar" class="form-control col-md-8" required>
+                                        <input type="text" name="jumlah_bayar" value="{{ old('jumlah_bayar') }}" id="jumlah_bayar" class="form-control col-md-8">
                                     </div>
+                                    <div class="form-group row">
+                                        <label for="peminjaman_id" class="col-md-4">Peminjaman</label>
+                                        <select class="form-control select-dropdown col-md-8" name="peminjaman_id">
+                                            @foreach ($peminjaman as $peminjaman)
+                                            <option value="" hidden>Peminjaman</option>
+                                            <option value="{{ $peminjaman->id }}" required>{{ $peminjaman->biaya }}</option>
+                                            @endforeach
+                                          </select>
+                                    
+                                    
+                                    
                                     
                                     <div class="d-flex justify-content-center">
-                                        <input type="submit" value="Edit" class="btn btn-primary">
+                                        <input type="submit" value="Tambah" class="btn btn-primary">
                                     </div>
                                 </form>
                             </div>

@@ -48,17 +48,21 @@
                                 <form action="{{ route('pembayaran.store') }}" method="post">
                                     @csrf
                                     <div class="form-group row">
-                                        <label for="name" class="col-md-4">Nama</label>
-                                        <input type="text" name="name" value="{{ old('name') }}" id="name" class="form-control col-md-8">
-                                    </div>
-                                    <div class="form-group row">
                                         <label for="tanggal" class="col-md-4">Tanggal</label>
                                         <input type="date" name="tanggal" value="{{ old('tanggal') }}" id="tanggal" class="form-control col-md-8">
                                     </div>
                                     <div class="form-group row">
                                         <label for="jumlah_bayar" class="col-md-4">Jumlah Bayar</label>
-                                        <input type="text" jumlah_bayar="jumlah_bayar" value="{{ old('jumlah_bayar') }}" id="jumlah_bayar" class="form-control col-md-8">
+                                        <input type="text" name="jumlah_bayar" value="{{ old('jumlah_bayar') }}" id="jumlah_bayar" class="form-control col-md-8">
                                     </div>
+                                    <div class="form-group row">
+                                        <label for="peminjaman_id" class="col-md-4">Peminjaman</label>
+                                        <select class="form-control select-dropdown col-md-8" name="peminjaman_id">
+                                            @foreach ($peminjaman as $peminjaman)
+                                            <option value="" hidden>Nama Peminjam</option>
+                                            <option value="{{ $peminjaman->id }}" required>{{ $peminjaman->nama_peminjam }}</option>
+                                            @endforeach
+                                          </select>
                                     
                                     
                                     

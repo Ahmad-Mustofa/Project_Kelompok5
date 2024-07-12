@@ -41,9 +41,9 @@
                                     <thead>
                                         <tr>
                                             <th>NO</th>
-                                            <th>Nama</th>
                                             <th>Tanggal</th>
                                             <th>Jumlah Bayar</th>
+                                            <th>Peminjaman</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -51,9 +51,11 @@
                                         @foreach ($pembayaran as $pembayaran)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $jenis->name }}</td>
-                                                <td class="d-flex"><a type="button" href="{{ route('pembayaran.edit', $jenis->id) }}" class="btn btn-primary mr-4">Edit</a>
-                                                    <form action="{{ route('pembayaran.delete', $jenis->id) }}" method="post" onsubmit="return confirm('yakin ingin dihapus?')">
+                                                <td>{{ $pembayaran->tanggal }}</td>
+                                                <td>{{ $pembayaran->jumlah_bayar }}</td>
+                                                <td>{{ $pembayaran->peminjaman_id }}</td>
+                                                <td class="d-flex"><a type="button" href="{{ route('pembayaran.edit', $pembayaran->id) }}" class="btn btn-primary mr-4">Edit</a>
+                                                    <form action="{{ route('pembayaran.delete', $pembayaran->id) }}" method="post" onsubmit="return confirm('yakin ingin dihapus?')">
                                                        @csrf
                                                        @method('delete')
                                                        <button type="submit" class="btn btn-danger">Delete</button>

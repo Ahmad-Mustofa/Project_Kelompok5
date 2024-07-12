@@ -57,15 +57,20 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="thn_beli" class="col-md-4">Tahun Beli</label>
-                                        <input type="integer" name="thn_beli" value="{{ old('password') }}" id="thn_beli" class="form-control col-md-8">
+                                        <input type="integer" name="thn_beli" value="{{ old('thn_beli') }}" id="thn_beli" class="form-control col-md-8">
                                     </div>
                                     <div class="form-group row">
                                         <label for="deskripsi" class="col-md-4">Deskripsi</label>
                                         <input type="text" name="deskripsi" value="{{ old('deskripsi') }}" id="deskripsi" class="form-control col-md-8">
                                     </div>
                                     <div class="form-group row">
-                                        <label for="jenis_kendaraan" class="col-md-4">Jenis Kendaraan</label>
-                                        <input type="text" name="jenis_kendaraan" value="{{ old('jenis_kendaraan') }}" id="jenis_kendaraan" class="form-control col-md-8">
+                                        <label for="jenis_kendaraan_id" class="col-md-4">Jenis kendaraan</label>
+                                        <select class="form-control select-dropdown col-md-8" name="jenis_kendaraan_id">
+                                            @foreach ($jenis_kendaraan as $jenis_kendaraan)
+                                            <option value="" hidden>Jenis Kendaraan</option>
+                                            <option value="{{ $jenis_kendaraan->id }}" required>{{ $jenis_kendaraan->name }}</option>
+                                            @endforeach
+                                          </select>
                                     </div>
                                     <div class="form-group row">
                                         <label for="kapasitas_kursi" class="col-md-4">Kapasitas Kursi</label>

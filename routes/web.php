@@ -5,6 +5,7 @@ use App\Http\Controllers\jenisKendaraanController;
 use App\Http\Controllers\pembayaranController;
 use App\Http\Controllers\peminjamanController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -52,3 +53,20 @@ Route::get('/dashboard/pembayaran', [pembayaranController::class, 'index'])->nam
         Route::delete('/dashboard/pembayaran/delete/{id}', [pembayaranController::class, "destroy"])->name('pembayaran.delete');
         Route::put('/dashboard/pembayaran/{id}', [pembayaranController::class, "update"])->name('pembayaran.update');
         Route::get('/dashboard/pembayaran/edit/{id}', [pembayaranController::class, "edit"])->name('pembayaran.edit');
+
+
+
+        
+
+
+        // ===== landingPage routes =====
+Route::get('rentalmobil-app', [PageController::class, 'index']);
+
+// about page
+Route::get('rentalmobil-app/index',[PageController::class, 'index']);
+
+// produck page
+Route::get('rentalmobil-app/index',[PageController::class, 'index']);
+
+// pemesanan page
+Route::get('rentalmobil-app/index',[PageController::class, 'index']);

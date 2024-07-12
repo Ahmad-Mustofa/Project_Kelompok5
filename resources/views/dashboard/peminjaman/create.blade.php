@@ -48,36 +48,45 @@
                                 <form action="{{ route('peminjaman.store') }}" method="post">
                                     @csrf
                                     <div class="form-group row">
-                                        <label for="name" class="col-md-4">Nama Peminjam</label>
-                                        <input type="text" name="name" value="{{ old('name') }}" id="name" class="form-control col-md-8">
+                                        <label for="nama_peminjam" class="col-md-4">Nama Peminjam</label>
+                                        <input type="text" name="nama_peminjam" value="{{ old('nama_peminjam') }}" id="nama_peminjam" class="form-control col-md-8">
                                     </div>
                                     <div class="form-group row">
                                         <label for="ktp_peminjam" class="col-md-4">KTP Peminjam</label>
-                                        <input type="text" ktp_peminjam="ktp_peminjam" value="{{ old('ktp_peminjam') }}" id="ktp_peminjam" class="form-control col-md-8">
+                                        <input type="text" name="ktp_peminjam" value="{{ old('ktp_peminjam') }}" id="ktp_peminjam" class="form-control col-md-8">
                                     </div>
                                     <div class="form-group row">
                                         <label for="keperluan_pinjam" class="col-md-4">Keperluan Pinjam</label>
-                                        <input type="text" keperluan_pinjam="keperluan_pinjam" value="{{ old('keperluan_pinjam') }}" id="keperluan_pinjam" class="form-control col-md-8">
+                                        <input type="text" name="keperluan_pinjam" value="{{ old('keperluan_pinjam') }}" id="keperluan_pinjam" class="form-control col-md-8">
                                     </div>
                                     <div class="form-group row">
                                         <label for="mulai" class="col-md-4">Mulai</label>
-                                        <input type="date" mulai="mulai" value="{{ old('mulai') }}" id="mulai" class="form-control col-md-8">
+                                        <input type="date" name="mulai" value="{{ old('mulai') }}" id="mulai" class="form-control col-md-8">
                                     </div>
                                     <div class="form-group row">
                                         <label for="selesai" class="col-md-4">Selesai</label>
-                                        <input type="date" selesai="selesai" value="{{ old('selesai') }}" id="selesai" class="form-control col-md-8">
+                                        <input type="date" name="selesai" value="{{ old('selesai') }}" id="selesai" class="form-control col-md-8">
                                     </div>
                                     <div class="form-group row">
                                         <label for="biaya" class="col-md-4">Biaya</label>
-                                        <input type="text" biaya="biaya" value="{{ old('biaya') }}" id="biaya" class="form-control col-md-8">
+                                        <input type="text" name="biaya" value="{{ old("biaya") }}" id="biaya" class="form-control col-md-8">
                                     </div>
                                     <div class="form-group row">
-                                        <label for="komentar" class="col-md-4">Komentar Peminjam</label>
-                                        <input type="text" komentar="komentar" value="{{ old('komentar') }}" id="komentar" class="form-control col-md-8">
+                                        <label for="armada_id" class="col-md-4">Armada</label>
+                                        <select class="form-control select-dropdown col-md-8" name="armada_id">
+                                            @foreach ($armada as $armada)
+                                            <option value="" hidden>Jenis Kendaraan</option>
+                                            <option value="{{ $armada->id }}" required>{{ $armada->merk }}</option>
+                                            @endforeach
+                                          </select>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="status" class="col-md-4">Status Pinjam</label>
-                                        <input type="text" status="status" value="{{ old('status') }}" id="status" class="form-control col-md-8">
+                                        <label for="komentar_peminjam" class="col-md-4">Komentar Peminjam</label>
+                                        <input type="text" name="komentar_peminjam" value="{{ old('komentar_peminjam') }}" id="komentar_peminjam" class="form-control col-md-8">
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="status_pinjam" class="col-md-4">Status Pinjam</label>
+                                        <input type="text" name="status_pinjam" value="{{ old('status_pinjam') }}" id="status_pinjam" class="form-control col-md-8">
                                     </div>
                                     
                                     

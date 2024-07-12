@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\armada;
+use App\Models\jenis_kendaraan;
 class armadaController extends Controller
 {
     public function index(){
@@ -13,7 +14,8 @@ class armadaController extends Controller
 
         public function create()
         {
-            return view('dashboard.armada.create');
+            $jenis_kendaraan=jenis_kendaraan::all();
+            return view('dashboard.armada.create', compact('jenis_kendaraan'));
         }
 
     /**
@@ -65,7 +67,9 @@ class armadaController extends Controller
     public function edit($id)
     {
         $armada = armada::findOrFail($id);
-        return view('dashboard.armada.edit', compact('armada'));
+        $jenis_kendaraan=jenis_kendaraan::all();
+        return view('dashboard.armada.edit', compact('jenis_kendaraan'));
+        
     }
 
     /**
