@@ -46,12 +46,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($jenis_kendaraan as $jenis)
+                                        @foreach ($jenis_kendaraan as $jenis_kendaraan)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $jenis->name }}</td>
-                                                <td class="d-flex"><a type="button" href="{{ route('jenis_kendaraan.edit', $jenis->id) }}" class="btn btn-primary mr-4">Edit</a>
-                                                    <form action="{{ route('jenis_kendaraan.delete', $jenis->id) }}" method="post" onsubmit="return confirm('yakin ingin dihapus?')">
+                                                <td>{{ $jenis_kendaraan->name }}</td>
+                                                <td class="d-flex"><a type="button" href="{{ route('jenis_kendaraan.edit', $jenis_kendaraan->id) }}" class="btn btn-primary mr-4">Edit</a>
+                                                    <form action="{{ route('jenis_kendaraan.delete', $jenis_kendaraan->id) }}" method="post" onsubmit="return confirm('yakin ingin dihapus?')">
                                                        @csrf
                                                        @method('delete')
                                                        <button type="submit" class="btn btn-danger">Delete</button>

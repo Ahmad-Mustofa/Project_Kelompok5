@@ -45,9 +45,8 @@
                                     </ul>
                                 </div>
                                 @endif
-                                <form action="{{ route('armada.update', $armada->id) }}" method="post">
+                                <form action="{{ route('armada.store') }}" method="post">
                                     @csrf
-                                    @method('PUT')
                                     <div class="form-group row">
                                         <label for="merk" class="col-md-4">Merk</label>
                                         <input type="text" name="merk" value="{{ old('merk') }}" id="merk" class="form-control col-md-8">
