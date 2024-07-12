@@ -37,7 +37,7 @@ Route::get('/dashboard/armada', [armadaController::class, 'index'])->name('armad
         Route::get('/dashboard/armada/create', [armadaController::class, "create"])->name('armada.create');
         Route::post('/dashboard/armada/store', [armadaController::class, "store"])->name('armada.store');
         Route::delete('/dashboard/armada/delete/{id}', [armadaController::class, "destroy"])->name('armada.delete');
-        Route::put('/dashboard/armada/{id}', [armadaController::class, "update"])->name('armada.update');
+        Route::put('/dashboard/armada/update{id}', [armadaController::class, "update"])->name('armada.update');
         Route::get('/dashboard/armada/edit/{id}', [armadaController::class, "edit"])->name('armada.edit');
 
 Route::get('/dashboard/peminjaman', [peminjamanController::class, 'index'])->name('peminjaman.index');

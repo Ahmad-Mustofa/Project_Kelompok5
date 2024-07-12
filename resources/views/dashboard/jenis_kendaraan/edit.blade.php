@@ -45,8 +45,9 @@
                                     </ul>
                                 </div>
                                 @endif
-                                <form action="{{ route('jenis_kendaraan.store') }}" method="post">
+                                <form action="{{ route('jenis_kendaraan.update', $jenis_kendaraan->id)}}" method="post">
                                     @csrf
+                                    @method('PUT')  
                                     <div class="form-group row">
                                         <label for="name" class="col-md-4">Nama</label>
                                         <input type="hidden" name="id" value="{{ $jenis_kendaraan->id }}">
